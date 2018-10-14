@@ -1,28 +1,35 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import FilmList from './FilmList';
+//import {films} from './filmes';
+import logo from './images/Star_Wars_Logo.svg';
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+class App extends Component{
+    constructor(){
+        super();
+        this.state={
+            films: []
+        }
+    }
+    componentDidMount(){
+          fetch('https://swapi.co/api/films/').then(response => {
+            return response.json();
+          }).then(data => {
+            // Work with JSON data here
+            this.setState({films: data.results});
+          }).catch(err => {
+            console.error(err);
+            // Do something for an error here
+          });
+    }
+    render(){
+        return(
+            <div>   
+                <div className="text-center"><img src={logo} className="App-logo" alt="logo" width="250"/></div>  
+                <FilmList films={this.state.films} />
+            </div>
+        );
+    }    
 }
 
 export default App;
