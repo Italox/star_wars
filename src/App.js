@@ -5,22 +5,20 @@ import logo from './images/Star_Wars_Logo.svg';
 import './App.css';
 
 class App extends Component{
-    constructor(){
-        super();
-        this.state={
-            films: []
-        }
+    state = {
+      films: [],
     }
+
     componentDidMount(){
-          fetch('https://swapi.co/api/films/').then(response => {
-            return response.json();
-          }).then(data => {
-            // Work with JSON data here
-            this.setState({films: data.results});
-          }).catch(err => {
-            console.error(err);
-            // Do something for an error here
-          });
+      fetch('https://swapi.co/api/films/').then(response => {
+        return response.json();
+      }).then(data => {
+        // Work with JSON data here
+        this.setState({films: data.results});
+      }).catch(err => {
+        console.error(err);
+        // Do something for an error here
+      });
     }
     render(){
         return(

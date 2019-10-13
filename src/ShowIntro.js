@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import {resume} from './Film';
-import Typist from 'react-typist';
-import ReactDOM from "react-dom";
 
 class ShowIntro extends Component{
     constructor(){
